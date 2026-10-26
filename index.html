@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viktor M. — Shopify & Automation</title>
+<meta name="description" content="Shopify customization, landing pages and Python automation for online stores and small businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf8; --surface: #ffffff; --text: #16181d; --muted: #5d6470;
+    --line: #e6e6e1; --accent: #1a7f5a; --accent-soft: #e3f3ec; --code-bg: #f1f1ed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111316; --surface: #1a1d21; --text: #eceef1; --muted: #9aa1ab;
+      --line: #2a2e34; --accent: #4cc497; --accent-soft: #17302a; --code-bg: #20242a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111316; --surface: #1a1d21; --text: #eceef1; --muted: #9aa1ab;
+    --line: #2a2e34; --accent: #4cc497; --accent-soft: #17302a; --code-bg: #20242a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 Inter, system-ui, sans-serif; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  header.top { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+  .logo { font-weight: 700; letter-spacing: -.01em; }
+  .logo span { color: var(--accent); }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 15px; }
+  nav a:hover { color: var(--text); }
+  .hero { padding: 64px 0 48px; }
+  .hero h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.1; letter-spacing: -.02em; margin: 0 0 16px; max-width: 760px; }
+  .hero p { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0 0 28px; }
+  .btn { display: inline-block; background: var(--accent); color: #fff; padding: 12px 22px; border-radius: 999px; text-decoration: none; font-weight: 600; }
+  .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); margin-left: 8px; }
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 28px; letter-spacing: -.01em; margin: 0 0 24px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .card h3 { margin: 0 0 6px; font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .project { display: grid; gap: 24px; grid-template-columns: 1fr 1.1fr; align-items: start; margin-bottom: 40px; }
+  .project:last-child { margin-bottom: 0; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; background: var(--accent-soft); color: var(--accent); padding: 3px 10px; border-radius: 999px; margin: 0 6px 10px 0; }
+  .project h3 { margin: 0 0 8px; font-size: 22px; }
+  .project ul { padding-left: 18px; color: var(--muted); margin: 12px 0 0; }
+  .demo { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; overflow: hidden; }
+  /* FAQ demo */
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; cursor: pointer; padding: 12px 0; font-weight: 600; display: flex; justify-content: space-between; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--accent); font-size: 20px; line-height: 1; transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq p { margin: 0 0 12px; color: var(--muted); font-size: 15px; }
+  /* Countdown demo */
+  .cd { background: #111; color: #fff; border-radius: 10px; padding: 14px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: center; margin-top: 16px; }
+  .cd b { font-weight: 600; }
+  .cd .t { display: flex; gap: 6px; font-variant-numeric: tabular-nums; }
+  .cd .t span { background: rgba(255,255,255,.15); border-radius: 6px; padding: 4px 8px; text-align: center; min-width: 44px; font-weight: 700; }
+  .cd .t small { display: block; font-size: 10px; opacity: .75; font-weight: 400; }
+  /* Code demo */
+  pre { background: var(--code-bg); border-radius: 10px; padding: 14px; overflow-x: auto; font-size: 13px; line-height: 1.5; margin: 0; }
+  .arrow { text-align: center; color: var(--muted); font-size: 13px; margin: 8px 0; }
+  .steps { counter-reset: s; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .steps div { counter-increment: s; }
+  .steps div::before { content: counter(s); display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+  .steps h3 { margin: 0 0 4px; font-size: 17px; }
+  .steps p { margin: 0; color: var(--muted); font-size: 15px; }
+  footer { padding: 48px 0 64px; border-top: 1px solid var(--line); text-align: center; }
+  footer p { color: var(--muted); }
+  @media (max-width: 760px) {
+    .project { grid-template-columns: 1fr; }
+    nav { display: none; }
+    .btn.ghost { margin: 10px 0 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="logo">Viktor M.<span> /</span> dev</div>
+    <nav><a href="#services">Services</a><a href="#work">Work</a><a href="#process">Process</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <div class="hero">
+    <h1>Shopify customization and automation that saves you hours.</h1>
+    <p>I build custom store sections, landing pages and scripts that remove repetitive work — with a clear fixed price before I start.</p>
+    <a class="btn" href="#contact">Get a quote</a><a class="btn ghost" href="#work">See my work</a>
+  </div>
+
+  <section id="services">
+    <h2>What I do</h2>
+    <div class="grid">
+      <div class="card"><h3>Shopify customization</h3><p>Custom sections, product page changes, Liquid/JS/CSS fixes, speed improvements.</p></div>
+      <div class="card"><h3>Store migration</h3><p>WooCommerce → Shopify product, variant and image data converted cleanly.</p></div>
+      <div class="card"><h3>Landing pages</h3><p>Fast, responsive pages in HTML/CSS/JS or React, ready to host.</p></div>
+      <div class="card"><h3>Python automation</h3><p>CSV/Excel cleanup, data conversion, reports, scheduled scripts.</p></div>
+      <div class="card"><h3>Integrations & bots</h3><p>REST APIs, webhooks, Google Sheets (Apps Script), Telegram bots.</p></div>
+      <div class="card"><h3>Product copy</h3><p>Product descriptions and store pages in English and Russian.</p></div>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2>Selected work</h2>
+
+    <div class="project">
+      <div>
+        <span class="tag">Shopify</span><span class="tag">Liquid</span><span class="tag">Product</span>
+        <h3>CX Sections Pack</h3>
+        <p>Three drop-in sections for any Online Store 2.0 theme — fully editable in the theme customizer, no apps required.</p>
+        <ul>
+          <li>FAQ accordion with Google FAQ structured data</li>
+          <li>Testimonials: grid on desktop, swipe row on mobile, zero JavaScript</li>
+          <li>Countdown banner that hides itself when the offer ends</li>
+        </ul>
+      </div>
+      <div class="demo">
+        <div class="faq">
+          <details open><summary>How long does shipping take?</summary><p>Orders ship within 1–2 business days. Delivery usually takes 3–7 days.</p></details>
+          <details><summary>Can I return an item?</summary><p>Yes — within 30 days of delivery, unused and in original packaging.</p></details>
+          <details><summary>Do you ship internationally?</summary><p>We ship to most countries. Shipping is calculated at checkout.</p></details>
+        </div>
+        <div class="cd" id="cd">
+          <b>Sale ends in</b>
+          <div class="t"><span id="cd-d">00<small>DAYS</small></span><span id="cd-h">00<small>HRS</small></span><span id="cd-m">00<small>MIN</small></span><span id="cd-s">00<small>SEC</small></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div>
+        <span class="tag">Python</span><span class="tag">Migration</span><span class="tag">Open tool</span>
+        <h3>woo2shopify — store migration tool</h3>
+        <p>Converts a WooCommerce product export into a Shopify-ready import file, so a whole catalog moves in minutes instead of days of copy-paste.</p>
+        <ul>
+          <li>Simple and variable products, up to 3 options</li>
+          <li>Sale prices → compare-at prices, stock, weight, backorders</li>
+          <li>Categories → type and tags, all product & variant images</li>
+          <li>Warns about broken variation links instead of silently dropping data</li>
+        </ul>
+      </div>
+      <div class="demo">
+<pre>Type,SKU,Name,Sale price,Regular price,Parent,Attribute 1 value(s)
+variable,TEE,Organic Cotton T-Shirt,,,,"S, M, L"
+variation,TEE-S-WHT,…,19.00,24.00,id:102,S</pre>
+        <div class="arrow">↓ python woo2shopify.py export.csv import.csv</div>
+<pre>Handle,Option1 Value,Variant SKU,Variant Price,Variant Compare At Price
+organic-cotton-t-shirt,S,TEE-S-WHT,19.00,24.00
+organic-cotton-t-shirt,M,TEE-M-BLK,24.00,</pre>
+      </div>
+    </div>
+
+    <div class="project">
+      <div>
+        <span class="tag">HTML/CSS</span><span class="tag">Landing page</span>
+        <h3>This website</h3>
+        <p>Single-file responsive site: light and dark mode, no frameworks, loads instantly on mobile. The same approach I use for client landing pages.</p>
+      </div>
+      <div class="demo"><p style="margin:0;color:var(--muted)">Resize the window or switch your system to dark mode — the layout and colors adapt automatically.</p></div>
+    </div>
+  </section>
+
+  <section id="process">
+    <h2>How we'll work</h2>
+    <div class="steps">
+      <div><h3>You describe the task</h3><p>Store URL, a file sample, or what you want automated.</p></div>
+      <div><h3>Fixed quote</h3><p>Written scope, price and deadline before any work starts.</p></div>
+      <div><h3>Safe delivery</h3><p>Shopify changes on a duplicate theme; you approve before going live.</p></div>
+      <div><h3>Handover</h3><p>Short notes on what changed. The code is yours.</p></div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <h2>Have a task?</h2>
+    <p>Send the details and I'll reply with a plan and a price.</p>
+    <a class="btn" href="mailto:viktor@cloudecosys.com">Email me</a>
+    <p style="margin-top:16px">viktor@cloudecosys.com</p>
+  </footer>
+</div>
+
+<script>
+  // Demo countdown: always 3 days ahead so the preview never shows "ended".
+  var end = Date.now() + 3 * 86400000 + 5 * 3600000;
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function set(id, v, label) { document.getElementById(id).innerHTML = pad(v) + "<small>" + label + "</small>"; }
+  function tick() {
+    var s = Math.max(0, Math.floor((end - Date.now()) / 1000));
+    set("cd-d", Math.floor(s / 86400), "DAYS"); set("cd-h", Math.floor(s % 86400 / 3600), "HRS");
+    set("cd-m", Math.floor(s % 3600 / 60), "MIN"); set("cd-s", s % 60, "SEC");
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
