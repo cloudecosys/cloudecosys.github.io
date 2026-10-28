@@ -65,6 +65,10 @@
   .cd .t { display: flex; gap: 6px; font-variant-numeric: tabular-nums; }
   .cd .t span { background: rgba(255,255,255,.15); border-radius: 6px; padding: 4px 8px; text-align: center; min-width: 44px; font-weight: 700; }
   .cd .t small { display: block; font-size: 10px; opacity: .75; font-weight: 400; }
+  .chat { display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
+  .chat span { align-self: flex-start; max-width: 80%; padding: 8px 12px; border-radius: 14px; background: var(--code-bg); }
+  .chat .me { align-self: flex-end; background: #2a9df4; color: #fff; }
+  .chat .alert { align-self: stretch; max-width: none; margin-top: 8px; background: #111; color: #fff; border-radius: 10px; }
   /* Code demo */
   pre { background: var(--code-bg); border-radius: 10px; padding: 14px; overflow-x: auto; font-size: 13px; line-height: 1.5; margin: 0; }
   .arrow { text-align: center; color: var(--muted); font-size: 13px; margin: 8px 0; }
@@ -140,6 +144,31 @@
       <img src="img/cx-sections-shopify-editor-desktop.jpg" alt="CX Testimonials, FAQ and Countdown sections inside the Shopify theme editor (Horizon theme)" loading="lazy" width="800" height="718">
       <figcaption>The sections in the Shopify theme editor on a demo store (Horizon theme). Reviews shown are sample content.</figcaption>
     </figure>
+
+    <div class="project">
+      <div>
+        <span class="tag">Python</span><span class="tag">Telegram</span><span class="tag">Product</span>
+        <h3>Telegram Lead Bot</h3>
+        <p>A ready-to-run Telegram bot that collects customer requests and sends each one to your team the moment it arrives. No subscription: it runs on your own PC or server.</p>
+        <ul>
+          <li>Name, phone in one tap, service and comment — a lead in about 30 seconds</li>
+          <li>Leads saved to CSV (Excel) and optionally Google Sheets</li>
+          <li>Instant manager alerts, plus /leads, /stats and /export commands</li>
+          <li>English and Russian texts, tested end to end with a live bot</li>
+        </ul>
+        <a class="btn buy" href="https://viktorcloud.gumroad.com/l/telegram-lead-bot" target="_blank" rel="noopener">Buy on Gumroad — $29</a>
+      </div>
+      <div class="demo">
+        <div class="chat">
+          <span>What is your name?</span>
+          <span class="me">Anna</span>
+          <span>Your phone number?</span>
+          <span class="me">📱 +1 555 123 4567</span>
+          <span class="me">✅ Send</span>
+          <span class="alert">🔔 New lead #42 → manager<br>Anna · +1 555 123 4567 · Booking</span>
+        </div>
+      </div>
+    </div>
 
     <div class="project">
       <div>
